@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import {StyleSheet, Image, SafeAreaView, Text, View, TouchableOpacity} from "react-native";
-import ProfileScreen from "./ProfileScreen";
+import {StyleSheet, Image, SafeAreaView, Text, View, TouchableOpacity, Platform} from "react-native";
 import settingIcon from "../materials/more_icon.png";
 import heartRate from "../materials/heart_rate.png";
 import humanIcon from "../materials/accessibility_outline.png";
@@ -17,10 +16,10 @@ const ReportScreen = ({navigation}) => {
         }
     ]
     return (
-        <SafeAreaView style={{backgroundColor:"white", height:"100%"}}>
+        <SafeAreaView style={[style.droidSafeArea, {backgroundColor:"white", height:"100%"}]}>
             <View style={{marginLeft:"5%", marginRight:"5%"}}>
                 <View style={{flexDirection:"row", marginTop:"5%", justifyContent:"space-between"}}>
-                    <Text style={{fontSize:27, fontWeight:"500", marginTop:7}}>Report</Text>
+                    <Text style={{fontSize:27, fontWeight:"700", marginTop:7}}>Report</Text>
                     <Image style={{height:30, width:30}} source={settingIcon}></Image>
                 </View>
                 <View style={style.infoBox}>
@@ -36,26 +35,26 @@ const ReportScreen = ({navigation}) => {
                 </View>
                 <View style={{flexDirection:"row", justifyContent:"space-between"}}>
                     <View style={[style.smallInfoBox, {backgroundColor: "#F5E1E9"}]}>
-                        <View style={{width:"50%", marginLeft:"10%", justifyContent:"center"}}>
+                        <View style={{width:"60%", marginLeft:"10%", justifyContent:"center"}}>
                             <Image source={bloodIcon} style={{tintColor:"#9D4C6C", width:32, height:32}}/>
                             <Text style={style.smallBoxTitle}>Blood Group</Text>
                             <Text style={{marginTop:10, fontSize:28, fontWeight:"400"}}>
                                 {info[0]["blood"]}
                             </Text>
                         </View>
-                        <View style={{width:"30%", flexDirection:"row", justifyContent:"flex-end"}}>
+                        <View style={{width:"15%", flexDirection:"row", justifyContent:"flex-end"}}>
                             <Image source={settingIcon} style={{width:16, height:16}}/>
                         </View>
                     </View>
                     <View style={[style.smallInfoBox, {backgroundColor: "#FAF0DB"}]}>
-                        <View style={{width:"50%", marginLeft:"10%", justifyContent:"center"}}>
+                        <View style={{width:"60%", marginLeft:"10%", justifyContent:"center"}}>
                             <Image source={humanIcon} style={{tintColor:"#E09F1F", width:32, height:32}}/>
                             <Text style={style.smallBoxTitle}>Weight</Text>
                             <Text style={{fontSize:14, marginTop:10}}>
                                 <Text  style={{fontSize:28, fontWeight:"400"}} >{info[0]["weight"]}</Text><Text>{' '}</Text>kg
                             </Text>
                         </View>
-                        <View style={{width:"30%", flexDirection:"row", justifyContent:"flex-end"}}>
+                        <View style={{width:"15%", flexDirection:"row", justifyContent:"flex-end"}}>
                             <Image source={settingIcon} style={{width:16, height:16}}/>
                         </View>
                     </View>
@@ -93,17 +92,25 @@ const style = StyleSheet.create({
         marginTop:30,
         paddingRight:"10%",
         backgroundColor:"#DCEDF9",
-        borderRadius:18,
-        height:170
+        height:170,
+        borderTopLeftRadius:18,
+        borderTopRightRadius:18,
+        borderBottomLeftRadius:18,
+        borderBottomRightRadius:18
     },
     smallInfoBox: {
         flexDirection:"row",
         marginTop:30,
         padding: 10,
+        paddingTop:15,
         backgroundColor:"#DCEDF9",
         borderRadius:18,
         height:135,
-        width: "48%"
+        width: "48%",
+        borderTopLeftRadius:18,
+        borderTopRightRadius:18,
+        borderBottomLeftRadius:18,
+        borderBottomRightRadius:18
     },
     smallBoxTitle: {
         fontSize:14,
@@ -119,7 +126,10 @@ const style = StyleSheet.create({
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: "#D7DDEA",
-        borderRadius:28
+        borderTopLeftRadius:28,
+        borderTopRightRadius:28,
+        borderBottomLeftRadius:28,
+        borderBottomRightRadius:28
     },
     box: {
         shadowColor: 'rgba(107, 134, 179, 0.25)',
@@ -128,19 +138,25 @@ const style = StyleSheet.create({
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: "#D7DDEA",
-        borderRadius:28,
+        borderTopLeftRadius:28,
+        borderTopRightRadius:28,
+        borderBottomLeftRadius:28,
+        borderBottomRightRadius:28,
         flexDirection:"row",
         justifyContents:"center",
         height:93,
         alignItems:"center",
         paddingLeft:"3%",
         paddingRight:"3%",
-        marginTop:16
+        marginTop:16,
     },
     boxIconCover: {
         width:64,
         height:64,
-        borderRadius:20,
+        borderTopLeftRadius:20,
+        borderTopRightRadius:20,
+        borderBottomLeftRadius:20,
+        borderBottomRightRadius:20,
         backgroundColor:"#DCEDF9",
         justifyContent:"center",
         alignItems:"center",
@@ -158,6 +174,10 @@ const style = StyleSheet.create({
     boxText: {
         fontSize:14,
         marginTop:8
+    },
+    droidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? 25 : 0
     }
 })
 

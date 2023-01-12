@@ -1,4 +1,4 @@
-import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Image, Platform, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React from "react";
 import settingIcon from "../materials/settings_outline.png";
 import compassIcon from "../materials/compass_outline.png";
@@ -14,7 +14,7 @@ export default function ProfileScreen() {
         }
     ]
     return (
-        <SafeAreaView style={{backgroundColor:"#1C6BA4", height:"100%"}}>
+        <SafeAreaView style={[style.droidSafeArea, {backgroundColor:"#1C6BA4", height:"100%"}]}>
             <View style={{marginLeft:"5%", marginRight:"5%", marginTop:"20%"}}>
                 <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
                     <Image style={[style.avt]} source={info[0]["avt"]} ></Image>
@@ -61,14 +61,17 @@ export default function ProfileScreen() {
 
 const style = StyleSheet.create({
     avt: {
-        borderRadius:"18px",
+        borderTopLeftRadius:18,
+        borderTopRightRadius:18,
+        borderBottomLeftRadius:18,
+        borderBottomRightRadius:18,
         height:77,
         width:77
     },
     name: {
         marginTop:20,
         fontSize:24,
-        fontWeight:"500",
+        fontWeight:"700",
         color:"white"
     },
     job: {
@@ -80,7 +83,10 @@ const style = StyleSheet.create({
     button: {
         height:70,
         marginTop:24,
-        borderRadius:18,
+        borderTopLeftRadius:18,
+        borderTopRightRadius:18,
+        borderBottomLeftRadius:18,
+        borderBottomRightRadius:18,
         backgroundColor:"#EEF6FC",
         flexDirection:"row",
         alignItems:"center",
@@ -94,6 +100,10 @@ const style = StyleSheet.create({
     },
     buttonText: {
         fontSize:18,
-        fontWeight:"600"
+        fontWeight:"700"
+    },
+    droidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? 25 : 0
     }
 })

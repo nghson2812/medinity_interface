@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Button, Image, Platform, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import userAvatar from "../materials/user_avatar.jpeg";
 import searchIcon from "../materials/search_icon.png";
 import optionIcon from "../materials/filter_icon.png";
@@ -8,23 +8,31 @@ import symptomChecker from "../materials/colored_symptom_checker.png";
 
 const HomeScreen = ({navigation}) => {
         return (
-                <SafeAreaView style={{backgroundColor:"white", height:"100%"}}>
+                <SafeAreaView style={[style.droidSafeArea, {backgroundColor:"white", height:"100%"}]}>
                     <View style={{marginLeft:"5%", marginRight:"5%"}}>
                         <View style={{flexDirection:"row", marginTop:"5%", justifyContent:"space-between"}}>
                             <View>
-                                <Text style={{fontSize:16, fontWeight:"400"}}>Hello!</Text>
-                                <Text style={{fontSize:27, fontWeight:"500", marginTop:7}}>Shahin Alam</Text>
+                                <Text style={{fontSize:16, fontWeight:"600"}}>Hello!</Text>
+                                <Text style={{fontSize:27, fontWeight:"700", marginTop:7}}>Shahin Alam</Text>
                             </View>
                             <View>
                                 <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-                                    <Image style={{borderRadius:"18px", height:50, width:50}} source={userAvatar}></Image>
+                                    <Image style={{
+                                        borderTopLeftRadius:18,
+                                        borderTopRightRadius:18,
+                                        borderBottomLeftRadius:18,
+                                        borderBottomRightRadius:18,
+                                        height:50, width:50, overflow:"hidden"}} source={userAvatar}></Image>
                                 </TouchableOpacity>
                             </View>
                         </View>
                         <View style={{
                             height:70,
                             marginTop:24,
-                            borderRadius:18,
+                            borderTopLeftRadius:18,
+                            borderTopRightRadius:18,
+                            borderBottomLeftRadius:18,
+                            borderBottomRightRadius:18,
                             backgroundColor:"#EEF6FC",
                             flexDirection:"row",
                             alignItems:"center",
@@ -38,7 +46,7 @@ const HomeScreen = ({navigation}) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{marginTop:23}}>
-                            <Text style={{fontSize:17, fontWeight:"500"}}>Services</Text>
+                            <Text style={{fontSize:17, fontWeight:"700"}}>Services</Text>
                             <TouchableOpacity style={[style.box]}>
                                 <View style={{width:"50%", marginLeft:"10%", justifyContent:"center"}}>
                                     <Text style={{fontSize:20, fontWeight:"600"}}>Find the nearest Medical Service Providers</Text>
@@ -50,7 +58,7 @@ const HomeScreen = ({navigation}) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{marginTop:40}}>
-                            <Text style={{fontSize:17, fontWeight:"500"}}>Symptom Checker</Text>
+                            <Text style={{fontSize:17, fontWeight:"700"}}>Symptom Checker</Text>
                             <TouchableOpacity style={[style.box, {backgroundColor: "#FAF0DB"}]}>
                                 <View style={{width:"50%", marginLeft:"10%", justifyContent:"center"}}>
                                     <Text style={{fontSize:20, fontWeight:"600"}}>Let's check your health condition today</Text>
@@ -71,13 +79,20 @@ const style = StyleSheet.create({
         flexDirection:"row",
         marginTop:30,
         backgroundColor:"#DCEDF9",
-        borderRadius:18,
+        borderTopLeftRadius:18,
+        borderTopRightRadius:18,
+        borderBottomLeftRadius:18,
+        borderBottomRightRadius:18,
         height:170
     },
     smallBoxTitle: {
         fontSize:14,
         fontWeight:"400",
         marginTop:15
+    },
+    droidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? 25 : 0
     }
 })
 

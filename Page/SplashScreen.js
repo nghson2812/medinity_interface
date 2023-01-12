@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView, Platform} from 'react-native';
+import {platforms} from "react-native/react-native.config";
 
 
 class SplashScreen extends React.Component {
@@ -21,7 +22,7 @@ class SplashScreen extends React.Component {
     }
     render() {
         return (
-            <SafeAreaView style={{height:"100%", backgroundColor:"white"}}>
+            <SafeAreaView style={[styles.droidSafeArea, {height:"100%", backgroundColor:"white"}]}>
                 <View style={styles.viewStyles}>
                     <Text style={styles.textStyles}>Welcome to</Text>
                     <Text style={styles.headingStyles}>Medinity</Text>
@@ -54,6 +55,10 @@ const styles = {
         flexDirection:"column",
         justifyContent: "flex-end",
         alignItems: "center"
+    },
+    droidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? 25 : 0
     }
 }
 export default SplashScreen;

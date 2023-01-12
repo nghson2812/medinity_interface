@@ -1,8 +1,5 @@
 import React, {Component} from "react";
-import {Button, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import ProfileScreen from "./ProfileScreen";
-import userAvatar from "../materials/user_avatar.jpeg";
-import documentIcon from "../materials/document_text_outline.png";
+import {Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 const NotificationScreen = ({navigation}) => {
     const info = [
@@ -43,10 +40,10 @@ const NotificationScreen = ({navigation}) => {
         }
     ]
     return (
-        <SafeAreaView style={{backgroundColor:"white", height:"100%"}}>
-            <View style={{marginLeft:"5%", marginRight:"5%"}}>
-                <View style={{marginTop:"5%", marginBottom:30}}>
-                    <Text style={{fontSize:27, fontWeight:"500", marginTop:7}}>Notifications</Text>
+        <SafeAreaView style={[style.droidSafeArea, {backgroundColor:"white", height:"100%"}]}>
+            <View style={{marginLeft:"5%", marginRight:"5%", overflow:"hidden"}}>
+                <View style={{marginTop:"5%"}}>
+                    <Text style={{fontSize:27, fontWeight:"700", marginTop:7}}>Notifications</Text>
                 </View>
                 <TouchableOpacity style={[style.box]}>
                     <View style={[style.boxIconCover, {backgroundColor:info[0]["color"]}]}>
@@ -104,7 +101,10 @@ const style = StyleSheet.create({
         marginTop:30,
         paddingRight:"10%",
         backgroundColor:"#DCEDF9",
-        borderRadius:18,
+        borderTopLeftRadius:18,
+        borderTopRightRadius:18,
+        borderBottomLeftRadius:18,
+        borderBottomRightRadius:18,
         height:170
     },
     smallInfoBox: {
@@ -112,7 +112,10 @@ const style = StyleSheet.create({
         marginTop:30,
         padding: 10,
         backgroundColor:"#DCEDF9",
-        borderRadius:18,
+        borderTopLeftRadius:18,
+        borderTopRightRadius:18,
+        borderBottomLeftRadius:18,
+        borderBottomRightRadius:18,
         height:135,
         width: "48%"
     },
@@ -130,7 +133,10 @@ const style = StyleSheet.create({
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: "#D7DDEA",
-        borderRadius:28
+        borderTopLeftRadius:28,
+        borderTopRightRadius:28,
+        borderBottomLeftRadius:28,
+        borderBottomRightRadius:28
     },
     box: {
         shadowColor: 'rgba(107, 134, 179, 0.25)',
@@ -139,19 +145,25 @@ const style = StyleSheet.create({
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: "#D7DDEA",
-        borderRadius:28,
+        borderTopLeftRadius:28,
+        borderTopRightRadius:28,
+        borderBottomLeftRadius:28,
+        borderBottomRightRadius:28,
         flexDirection:"row",
         justifyContents:"center",
         height:100,
         alignItems:"center",
         paddingLeft:"3%",
         paddingRight:"3%",
-        marginTop:16
+        marginTop:30
     },
     boxIconCover: {
         width:64,
         height:64,
-        borderRadius:20,
+        borderTopLeftRadius:20,
+        borderTopRightRadius:20,
+        borderBottomLeftRadius:20,
+        borderBottomRightRadius:20,
         backgroundColor:"#DCEDF9",
         justifyContent:"center",
         alignItems:"center",
@@ -169,6 +181,10 @@ const style = StyleSheet.create({
     boxText: {
         fontSize:14,
         marginTop:8
+    },
+    droidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? 25 : 0
     }
 })
 
